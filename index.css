@@ -94,7 +94,7 @@ body {
  
 @font-face {
     font-family: 'osrs';
-    src: url('/media/fonts/RuneScape-Plain-12.ttf') format('truetype');
+    src: url('media/fonts/RuneScape-Plain-12.ttf') format('truetype');
 }
 
 p, button, input {
