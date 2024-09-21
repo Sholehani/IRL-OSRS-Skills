@@ -1,43 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+}
 
 @media screen and (max-device-width: 900px) {
-
-
     #skill-window {
         vertical-align: middle;
-
-        min-width:100%;
-        min-height:100%;
-
+        min-width: 100%;
+        min-height: 100%;
     }
 }
-
 @media screen and (min-device-width: 900px) and (max-device-width: 1290px) {
-    
-
     #skill-window {
         vertical-align: middle;
-
-        min-width:60%;
-        min-height:60%;
-
+        min-width: 60%;
+        min-height: 60%;
     }
 }
-
 @media screen and (min-device-width: 1290px) {
-    
-
     #skill-window {
         vertical-align: middle;
-
-        min-width:35%;
-        min-height:35%;
-
+        min-width: 35%;
+        min-height: 35%;
     }
 }
+
+@media screen and (max-device-width: 699px){
+    .inv-cell {
+        height: 6rem;
+        width: 12.5rem;
+    }
+    p, button, input {
+        font-size: 200%;
+    }
+}
+@media screen and (min-device-width: 700px) {
+    .inv-cell {
+        height: 6rem;
+        width: 13rem;
+    }
+    p, button, input {
+        font-size: 200%;
+    }
+}
+@media screen and (min-device-width: 800px) {
+    .inv-cell {
+        height: 5rem;
+        width: 12rem;
+    }
+    p, button, input {
+        font-size: 200%;
+    }
+}
+@media screen and (min-device-width: 900px) {
+    .inv-cell {
+        height: 3.5rem;
+        width: 8.2rem;
+    }
+
+    p, button, input {
+        font-size: 130%;
+    }
+}
+@media screen and (min-device-width: 1000px) {
+    .inv-cell {
+        height: 4rem;
+        width: 9rem;
+    }
+
+    p, button, input {
+        font-size: 160%;
+    }
+}
+
 
 html {
     height: 100%;
-    background-image: url("OSRS-ge.jpg");
+    background-image: url("media/images/OSRS-ge.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -52,147 +91,156 @@ body {
 
     min-height: 100%;
 }
-
-
-/* @media screen and (max-device-width: 900px) {
-
-
-    #skill-grid {
-        vertical-align: middle;
-
-        min-width:60%;
-        min-height:50%;
-
-    }
-} */
-
-@media screen and (max-device-height: 600px) {
-    #skill-grid {
-        min-height:90%;
-    }
-}
-@media screen and (min-device-height: 601px) and (max-device-height: 680px) {
-    #skill-grid {
-        min-height:50%;
-    }
-}
-@media screen and (min-device-height: 700px) {
-    #skill-grid {
-        min-height:45%;
-    }
-}
-@media screen and (min-device-height: 720px) and (min-device-width: 540px) {
-    #skill-grid {
-        min-height:68%;
-    }
-}
-@media screen and (min-device-height: 800px) and (min-device-width: 1200px) {
-    #skill-grid {
-        min-height:88%;
-    }
-}
-@media screen and (min-device-height: 840px) {
-    #skill-grid {
-        min-height:42%;
-    }
-}
-@media screen and (min-device-height: 880px) and (max-device-width: 350px) {
-    #skill-grid {
-        min-height:36%;
-    }
-}
-@media screen and (min-device-height: 1000px) {
-    #skill-grid {
-        min-height:70%;
-    }
-}
-@media screen and (min-device-height: 1100px) {
-    #skill-grid {
-        min-height:63%;
-    }
-}
-@media screen and (min-device-height: 1200px) {
-    #skill-grid {
-        min-height:60%;
-    }
-}
-@media screen and (min-device-height: 1300px) {
-    #skill-grid {
-        min-height:41%;
-    }
-}
-@media screen and (min-device-height: 1367px) {
-    #skill-grid {
-        min-height:36%;
-    }
+ 
+@font-face {
+    font-family: 'osrs';
+    src: url('/media/fonts/RuneScape-Plain-12.ttf') format('truetype');
 }
 
-@media screen and (max-device-width: 699px){
-    #skill-grid {
-        min-width:66%;
-    }
-}
-@media screen and (min-device-width: 700px) {
-    #skill-grid {
-        min-width:65%;
-    }
-}
-@media screen and (min-device-width: 900px) {
-    #skill-grid {
-        min-width:40%;
-    }
-}
-@media screen and (min-device-width: 1000px) {
-    #skill-grid {
-        min-width:40%;
-    }
+p, button, input {
+    color: yellow;
+    justify-self: center;
+    font-family: osrs;
 }
 
-@media screen and (min-device-width: 1290px) {
-    #skill-grid {
-        min-width:23%;
-    }
+.inv-num {
+    max-height: 1.6rem;
+    max-width: 1.6rem;
+
+    background: none;
+    text-align: end;
+    border-width: 0.02rem;
 }
 
-#skill-grid {
-    position: absolute;
-    /* background-image: url("ORS-inv-tabs2.jpg");
-    background-repeat: no-repeat; */
-
-    /* margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 100%; */
+button {
+    min-height: 2rem;
+    min-width: 2rem;
+    background-image: url(media/images/empty-points.jpg);
 }
 
-tbody {
-    table-layout: fixed;
-    width: 1;
-
-    padding-bottom: 100%;
-    
-    
+#settings {
+    display: flex;
+    flex-direction: row;
 }
 
-td, tr {
-    /* border: 1px solid #999; */
-    padding: 0.5rem;
-    display: absolute;
+#test{
+    margin: 0;
+    padding: 0;
 
-    table-layout: fixed;
-    margin-top: 50%;
+    display: grid;
+    place-items: center;
+
+    text-align: center;
 }
 
-td {
-    background-image: url(empty-inv.jpg);
+#rs-table {
+    position:absolute;
+
+    display: grid;
+    align-self: center;
+    justify-self: center;
+    grid-template-columns: repeat(1, 1fr);
+
+    row-gap: 5%;
+
+    row-gap: 0;
+    column-gap: 0;
+}
+
+.rs-table-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+}
+
+.inv-cell {
+    background-image: url("media/images/empty-inv.jpg");
     background-repeat: no-repeat;
-    background-position: center;
     background-size: contain;
+
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 0.75fr 25px auto;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "img . frac"
 }
+
+.inv-fraction {
+    margin-right:25%;
+
+    display:grid;
+    place-items: center;
+    grid-area: frac;
+    grid-template-rows: 1fr 1% 1fr;
+    grid-template-columns: 1fr 1% 1fr;
+    grid-template-areas: 
+    "num . ."
+    ". . ."
+    ". . den";
+}
+
+.inv-den {
+    text-align: right;
+    grid-area: den;
+}
+
+.inv-num {
+    text-align: left;
+    grid-area: num;
+}
+
+.inv-img, .img-input {
+    margin-left: 1.5rem;
+    grid-area: img;
+
+    height: 70%;
+    width: 80%;
+}
+
 
 #total-count {
-    background-image: url(empty-points.jpg);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+    overflow:hidden;
+}
+
+
+#total-count {
+    background-image: url("media/images/empty-points.jpg");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size:contain;
+    table-layout: fixed;
 }
- 
+
+#inv {
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    display: none;
+}
+
+.inv-img {
+    /* background-image: url(media/images/heart-skill.jpg); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:contain;
+    background-color: transparent;
+
+    border: none;
+
+}
+
+.inv-img:hover {
+    border: 1px solid yellow;
+}
+
+input[type='file'] {
+    color: transparent;
+    visibility:hidden;
+}
