@@ -100,7 +100,7 @@ body {
 p, button, input {
     color: yellow;
     justify-self: center;
-    font-family: osrs;
+    font-family: "osrs";
 }
 
 .inv-num {
