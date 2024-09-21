@@ -135,6 +135,7 @@ button {
 
 #rs-table {
     position:absolute;
+    vertical-align: middle;
 
     display: grid;
     align-self: center;
