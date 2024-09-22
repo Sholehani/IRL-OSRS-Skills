@@ -135,17 +135,6 @@ button {
 
 #rs-table {
     position:absolute;
-    vertical-align: middle;
-
-    display: grid;
-    align-self: center;
-    justify-self: center;
-    grid-template-columns: repeat(1, 1fr);
-
-    row-gap: 5%;
-
-    row-gap: 0;
-    column-gap: 0;
 }
 
 .rs-table-row {
