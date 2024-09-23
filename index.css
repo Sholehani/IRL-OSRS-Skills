@@ -97,10 +97,14 @@ body {
     src: url('media/fonts/RuneScape-Plain-12.ttf') format('truetype');
 }
 
-p, button, input {
+p, button, input, input::placeholder {
     color: yellow;
     justify-self: center;
     font-family: "osrs";
+}
+
+input::placeholder {
+    opacity: 60%;
 }
 
 .inv-num {
@@ -113,8 +117,8 @@ p, button, input {
 }
 
 button {
-    min-height: 2rem;
-    min-width: 2rem;
+    min-height: 110%;
+    min-width: 110%;
     background-image: url(media/images/empty-points.jpg);
 }
 
@@ -135,12 +139,9 @@ button {
 
 #rs-table {
     position:absolute;
-}
-
-.rs-table-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(1, 1fr);
+    grid-template-rows: repeat(8, 1fr);
 }
 
 .inv-cell {
@@ -152,9 +153,10 @@ button {
     justify-items: center;
     align-items: center;
     grid-template-columns: 0.75fr 25px auto;
-    grid-template-rows: auto;
+    grid-template-rows: 1fr auto;
     grid-template-areas: 
     "img . frac"
+    "slide slide slide"
 }
 
 .inv-fraction {
@@ -191,28 +193,18 @@ button {
 
 
 #total-count {
+    background-image: url("media/images/empty-points.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:contain;
+    table-layout: fixed;
+
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-grow: 0;
     overflow:hidden;
-}
-
-
-#total-count {
-    background-image: url("media/images/empty-points.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size:contain;
-    table-layout: fixed;
-}
-
-#inv {
-    position: absolute;
-    height: inherit;
-    width: inherit;
-    display: none;
 }
 
 .inv-img {
@@ -224,6 +216,16 @@ button {
 
     border: none;
 
+}
+
+.lv-slider {
+    justify-self: baseline;
+    grid-area: slide;
+    height: 5px;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: none;
 }
 
 .inv-img:hover {
