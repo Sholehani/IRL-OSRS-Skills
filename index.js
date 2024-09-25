@@ -34,11 +34,19 @@ function loadTable(){
     if(getCookie("cellCount") >= 24){
         clearCookies();
     }
-    if(getCookie("t1") == "") {
-        setTable(99);
+    if(getCookie("numerList") == "" || getCookie("t1") != "") {
+        let numerList = Array(23);
+        numerList.fill("n/a");
+        setCookie("numerList", numerList.join("|"), 365);
+
+        let denomList = Array(23);
+        denomList.fill("n/a");
+        setCookie("denomList", denomList.join("|"), 365);
+
+        setTable("new");
     }
     else {
-        setTable(-1);
+        setTable("cookie");
         let tempCount = +getCookie("cellCount");
 
         for(let i = 23; i > tempCount; i--) {
@@ -58,25 +66,30 @@ function setTable(numerator) {
         let skillImg = document.createElement("label");
         let skillFrac = document.createElement("div");
         let numer = document.createElement("input");
-        let denom = document.createElement("p");
-
+        let denom = document.createElement("input");
         let slider = document.createElement("input");
+        
+        slider.classList.add("lv-slider");
         slider.type = "range";
         slider.min = 0;
         slider.max = 99;
         slider.step = 1;
-        slider.classList.add("lv-slider");
 
         tableCell.classList.add("inv-cell");
         skillImg.classList.add("inv-img");
         imgInput.classList.add("img-input");
         skillFrac.classList.add("inv-fraction");
         numer.classList.add("inv-num");
+        denom.classList.add("inv-den");
 
         numer.type = "text";
         numer.placeholder = 0;
         numer.name = totalCellCount;
-        denom.classList.add("inv-den");
+        
+
+        denom.type = "text";
+        denom.placeholder = 0;
+        denom.name = totalCellCount;
 
         skillImg.src = "media/images/heart-skill.jpg";
         skillImg.alt = "Cell Img";
@@ -87,14 +100,16 @@ function setTable(numerator) {
         imgInput.addEventListener("click", loadImage(skillImg, ""));
 
 
-        if(numerator < 0){
-            numer.value = getCookie("t" + totalCellCount);
+        if(numerator == "cookie"){
+            let numCookie = getCookie("numerList").split("|")[totalCellCount - 1];
+            if(numCookie != "n/a") numer.value = numCookie;
+
+            let denCookie = getCookie("denomList").split("|")[totalCellCount - 1];
+            if(denCookie != "n/a") denom.value = denCookie;
         }
-        else {
-            setCookie("t"+totalCellCount, numer.value, 365);
-        }
+
         numer.addEventListener('change', updateCookie);
-        denom.textContent = "99";
+        denom.addEventListener('change', updateCookie);
 
 
         skillFrac.appendChild(numer);
@@ -128,13 +143,14 @@ function setTable(numerator) {
 function setTotalPoints() {
     let total = Number(0);
     let maxCells = Number(getCookie("cellCount"));
-    for(let i = 1; i <= maxCells; i++){
-        let tempPoints = getCookie("t" + i);
-        total += Number(tempPoints);
+    let numList = getCookie("numerList").split("|");
+    for(let i = 0; i < maxCells; i++){
+        let tempPoints = numList[i];
+        if(tempPoints != "n/a") total += Number(tempPoints);
     }
     
     let totalCell = document.getElementById("total-count");
-    let points = totalCell.childNodes[1].textContent = total;
+    totalCell.childNodes[1].textContent = total;
 }
 
 function setCell(cell, img) {
@@ -160,8 +176,17 @@ function getCookie(cname) {
     }
     return "";
 }
+
 function updateCookie() {
-    setCookie("t" + this.name, this.value, 365);
+    let cname = "numerList";
+    if(this.classList[0] == "inv-den") cname = "denomList";
+    if(this.value == "") this.value = "n/a";
+
+    let list = getCookie(cname).split("|");
+    list[Number(this.name) - 1] = this.value;
+    let newList = list.join("|");
+
+    setCookie(cname, newList, 365);
     setTotalPoints();
 }
 
@@ -174,6 +199,7 @@ function clearCookies() {
     });
 }
 
+
 function loadImage(imgLabel, img) {
     if(img == ""){
         imgLabel.style = "background-image: url('media/images/heart-skill.jpg');";
@@ -183,6 +209,7 @@ function loadImage(imgLabel, img) {
     }
 
 }
+
 
 document.addEventListener('DOMContentLoaded', function() {
     loadTable();

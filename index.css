@@ -107,7 +107,7 @@ input::placeholder {
     opacity: 60%;
 }
 
-.inv-num {
+.inv-num, .inv-den{
     max-height: 1.6rem;
     max-width: 1.6rem;
 
