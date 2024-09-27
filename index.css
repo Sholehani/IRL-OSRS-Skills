@@ -112,13 +112,12 @@ input::placeholder {
     max-width: 1.6rem;
 
     background: none;
-    text-align: end;
     border-width: 0.02rem;
 }
 
 button {
-    min-height: 110%;
-    min-width: 100%;
+    min-height: 70%;
+    min-width: 60%;
     background-color: black;
     border: 0.05rem solid yellow;
 }

@@ -31,19 +31,8 @@ function removeCell() {
 
 
 function loadTable(){
-    if(getCookie("cellCount") >= 24){
+    if(getCookie("cellCount") >= 24 || getCookie("numerList") == "" || getCookie("t1") != "") {
         resetTable();
-    }
-    if(getCookie("numerList") == "" || getCookie("t1") != "") {
-        let numerList = Array(23);
-        numerList.fill("n/a");
-        setCookie("numerList", numerList.join("|"), 365);
-
-        let denomList = Array(23);
-        denomList.fill("n/a");
-        setCookie("denomList", denomList.join("|"), 365);
-
-        setTable("new");
     }
     else {
         setTable("cookie");
@@ -54,7 +43,6 @@ function loadTable(){
         }
         cellCount = tempCount;
     }
-    setCookie("cellCount", cellCount, 365);
 }
 
 function setTable(numerator) {
@@ -91,7 +79,6 @@ function setTable(numerator) {
         denom.placeholder = 0;
         denom.name = totalCellCount;
 
-        // skillImg.src = "media/images/heart-skill.jpg";
         skillImg.alt = "Cell Img";
         skillImg.name = totalCellCount;
         imgInput.type = "file";
@@ -107,12 +94,16 @@ function setTable(numerator) {
             let denCookie = getCookie("denomList").split("|")[totalCellCount - 1];
             if(denCookie != "n/a") denom.value = denCookie;
 
+            if(getCookie("hideZero") == "true") {
+                numer.placeholder = "";
+                denom.placeholder = "";
+            }
             loadImage(skillImg);
         }
 
         numer.addEventListener('change', updateCookie);
         denom.addEventListener('change', updateCookie);
-
+        imgInput.addEventListener("change", storeImage);
 
         skillFrac.appendChild(numer);
         skillFrac.appendChild(denom);
@@ -121,9 +112,7 @@ function setTable(numerator) {
         tableCell.appendChild(skillFrac);
         tableCell.appendChild(slider);
         table.appendChild(tableCell);
-
-        imgInput.addEventListener("change", storeImage);
-        
+    
         rowCount++;
         totalCellCount++;
     }
@@ -222,8 +211,38 @@ function resetTable() {
     clearCookies();
     localStorage.clear();
     location.reload();
+
+    let numerList = Array(23);
+    numerList.fill("n/a");
+    let denomList = Array(23);
+    denomList.fill("n/a");
+
+    setCookie("numerList", numerList.join("|"), 365);
+    setCookie("denomList", denomList.join("|"), 365);
+    setCookie("cellCount", 23, 365);
+    setCookie("hideZero", "false", 365);
+
+    setTable("new");
 }
 
+function zeroOption() {
+    let numer = document.getElementsByClassName("inv-num");
+    let denom = document.getElementsByClassName("inv-den");
+    if(getCookie("hideZero") == "false"){
+        for(let i = 0; i < 23; i++){
+            numer[i].placeholder = "";
+            denom[i].placeholder = ""; 
+        }
+        setCookie("hideZero", "true", 365);
+    }
+    else {
+        for(let i = 0; i < 23; i++){
+            numer[i].placeholder = 0;
+            denom[i].placeholder = 0; 
+        }
+        setCookie("hideZero", "false", 365);
+    }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     loadTable();
@@ -237,12 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let resetButton = document.getElementById("reset");
     resetButton.onclick = resetTable;
 
- }, false);
+    let hide0 = document.getElementById("placehold");
+    hide0.onclick = zeroOption;
 
-//  document.addEventListener("change", function () {
-//     let imgCell = document.getElementsByClassName("inv-img");
-    
-//     for(let i = 0; i < 23; i++){
-//         loadImage(imgCell[i]);
-//     }
-//  });
+ }, false);
