@@ -165,11 +165,12 @@ function getCookie(cname) {
 
 function updateCookie() {
     let cname = "numerList";
+    let cvalue = "n/a";
     if(this.classList[0] == "inv-den") cname = "denomList";
-    if(this.value == "") this.value = "n/a";
+    if(this.value != "") cvalue = this.value;
 
     let list = getCookie(cname).split("|");
-    list[Number(this.name) - 1] = this.value;
+    list[Number(this.name) - 1] = cvalue;
     let newList = list.join("|");
 
     setCookie(cname, newList, 365);
