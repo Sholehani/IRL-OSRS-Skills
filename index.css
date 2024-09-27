@@ -84,7 +84,7 @@ html {
 body {
     display: grid;
     place-items: center;
-    align-content: center;  
+    align-content: center;
 
     margin-left: 5%;
     margin-right: 5%;
@@ -118,13 +118,15 @@ input::placeholder {
 
 button {
     min-height: 110%;
-    min-width: 110%;
-    background-image: url(media/images/empty-points.jpg);
+    min-width: 100%;
+    background-color: black;
+    border: 0.05rem solid yellow;
 }
 
 #settings {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 #test{
@@ -208,7 +210,6 @@ button {
 }
 
 .inv-img {
-    /* background-image: url(media/images/heart-skill.jpg); */
     background-repeat: no-repeat;
     background-position: center;
     background-size:contain;

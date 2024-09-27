@@ -32,7 +32,7 @@ function removeCell() {
 
 function loadTable(){
     if(getCookie("cellCount") >= 24){
-        clearCookies();
+        resetTable();
     }
     if(getCookie("numerList") == "" || getCookie("t1") != "") {
         let numerList = Array(23);
@@ -78,7 +78,7 @@ function setTable(numerator) {
         tableCell.classList.add("inv-cell");
         skillImg.classList.add("inv-img");
         imgInput.classList.add("img-input");
-        skillFrac.classList.add("inv-fraction");
+        skillFrac.classList.add("inv-fraction");      
         numer.classList.add("inv-num");
         denom.classList.add("inv-den");
 
@@ -91,13 +91,13 @@ function setTable(numerator) {
         denom.placeholder = 0;
         denom.name = totalCellCount;
 
-        skillImg.src = "media/images/heart-skill.jpg";
+        // skillImg.src = "media/images/heart-skill.jpg";
         skillImg.alt = "Cell Img";
         skillImg.name = totalCellCount;
         imgInput.type = "file";
-        imgInput.id = "imgIn";
-        skillImg.setAttribute("for", "imgIn");
-        imgInput.addEventListener("click", loadImage(skillImg, ""));
+        imgInput.id = "imgIn"+ totalCellCount;
+        imgInput.name = totalCellCount;
+        skillImg.setAttribute("for", "imgIn" + totalCellCount);
 
 
         if(numerator == "cookie"){
@@ -106,6 +106,8 @@ function setTable(numerator) {
 
             let denCookie = getCookie("denomList").split("|")[totalCellCount - 1];
             if(denCookie != "n/a") denom.value = denCookie;
+
+            loadImage(skillImg);
         }
 
         numer.addEventListener('change', updateCookie);
@@ -120,6 +122,8 @@ function setTable(numerator) {
         tableCell.appendChild(slider);
         table.appendChild(tableCell);
 
+        imgInput.addEventListener("change", storeImage);
+        
         rowCount++;
         totalCellCount++;
     }
@@ -151,13 +155,6 @@ function setTotalPoints() {
     
     let totalCell = document.getElementById("total-count");
     totalCell.childNodes[1].textContent = total;
-}
-
-function setCell(cell, img) {
-    let cellImg = cell.childNodes[0];
-    let cellFrac =  cell.childNodes[1];
-    let cellNumer = frac.childNodes[0];
-    let cellDenom = frac.childNodes[1];    
 }
 
 // https://stackoverflow.com/questions/20766590/how-to-save-user-text-input-html-input-as-cookie
@@ -199,15 +196,32 @@ function clearCookies() {
     });
 }
 
+function storeImage() {
+    // console.log(this);
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+        if(reader.result){
+            localStorage.setItem("img-" + this.name, reader.result);
+            location.reload();
+        }
+    });
+    reader.readAsDataURL(this.files[0]);
+    loadImage(this);
+}
 
-function loadImage(imgLabel, img) {
-    if(img == ""){
-        imgLabel.style = "background-image: url('media/images/heart-skill.jpg');";
+function loadImage(imgCell) {
+    const storedImgURL = localStorage.getItem("img-" + imgCell.name);
+    
+    if(storedImgURL) {
+        imgCell.setAttribute("style","background-image: url("+ storedImgURL + ");");
     }
-    else {
-        // imgLabel.style = "background-image: url('
-    }
+    
+}
 
+function resetTable() {
+    clearCookies();
+    localStorage.clear();
+    location.reload();
 }
 
 
@@ -220,4 +234,15 @@ document.addEventListener('DOMContentLoaded', function() {
     let removeButton = document.getElementById("remove");
     removeButton.onclick = removeCell;
 
+    let resetButton = document.getElementById("reset");
+    resetButton.onclick = resetTable;
+
  }, false);
+
+//  document.addEventListener("change", function () {
+//     let imgCell = document.getElementsByClassName("inv-img");
+    
+//     for(let i = 0; i < 23; i++){
+//         loadImage(imgCell[i]);
+//     }
+//  });
