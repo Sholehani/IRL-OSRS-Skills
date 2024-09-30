@@ -83,7 +83,7 @@ html {
   }
 body {
     display: grid;
-    place-items: center;
+    place-items: center !important;
     align-content: center;
 
     margin-left: 5%;
