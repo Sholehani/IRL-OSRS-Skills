@@ -98,7 +98,17 @@ function setTable(numerator) {
                 numer.placeholder = "";
                 denom.placeholder = "";
             }
+            
             loadImage(skillImg);
+        }
+        
+        if(getCookie("hideBorder") == "true") {
+            numer.setAttribute("style","border: none;");
+            denom.setAttribute("style","border: none;");
+        }
+        else {
+            numer.setAttribute("style","border-width: 0.02rem;");
+            denom.setAttribute("style","border-width: 0.02rem;"); 
         }
 
         numer.addEventListener('change', updateCookie);
