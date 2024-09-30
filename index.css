@@ -141,8 +141,9 @@ button {
 #rs-table {
     position:absolute;
     display: grid;
-    justify-items: center;
-    align-items: center;
+    justify-items: center !important;
+    align-items: center !important;
+    margin: auto;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(8, 1fr);
 }
