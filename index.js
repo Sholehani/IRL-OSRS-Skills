@@ -101,7 +101,7 @@ function setTable(numerator) {
             
             loadImage(skillImg);
         }
-        
+
         if(getCookie("hideBorder") == "true") {
             numer.setAttribute("style","border: none;");
             denom.setAttribute("style","border: none;");
@@ -232,7 +232,7 @@ function resetTable() {
     setCookie("denomList", denomList.join("|"), 365);
     setCookie("cellCount", 23, 365);
     setCookie("hideZero", "false", 365);
-    setCookie("hideZero", "false", 365);
+    setCookie("hideBorder", "false", 365);
 
     setTable("new");
 }
