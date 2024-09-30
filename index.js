@@ -222,6 +222,7 @@ function resetTable() {
     setCookie("denomList", denomList.join("|"), 365);
     setCookie("cellCount", 23, 365);
     setCookie("hideZero", "false", 365);
+    setCookie("hideZero", "false", 365);
 
     setTable("new");
 }
@@ -245,6 +246,26 @@ function zeroOption() {
     }
 }
 
+function borderOption() {
+    let numer = document.getElementsByClassName("inv-num");
+    let denom = document.getElementsByClassName("inv-den");
+
+    if(getCookie("hideBorder") == "false"){
+        for(let i = 0; i < 23; i++){
+            numer[i].setAttribute("style","border: none;");
+            denom[i].setAttribute("style","border: none;");
+        }
+        setCookie("hideBorder", "true", 365);
+    }
+    else {
+        for(let i = 0; i < 23; i++){
+            numer[i].setAttribute("style","border-width: 0.02rem;");
+            denom[i].setAttribute("style","border-width: 0.02rem;"); 
+        }
+        setCookie("hideBorder", "false", 365);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     loadTable();
     setTotalPoints();
@@ -259,5 +280,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let hide0 = document.getElementById("placehold");
     hide0.onclick = zeroOption;
+
+    let hideBorder = document.getElementById("borders");
+    hideBorder.onclick = borderOption;
 
  }, false);
