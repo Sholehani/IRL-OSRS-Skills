@@ -69,7 +69,7 @@
     }
 
     p, button, input {
-        font-size: 160%;
+        font-size: 140%;
     }
 }
 
@@ -105,18 +105,6 @@ p, button, input, input::placeholder {
     font-family: "osrs";
 }
 
-input::placeholder {
-    opacity: 60%;
-}
-
-.inv-num, .inv-den{
-    max-height: 1.6rem;
-    max-width: 1.6rem;
-
-    background: none;
-    border-width: 0.02rem;
-}
-
 button {
     min-height: 70%;
     min-width: 60%;
@@ -128,16 +116,6 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-
-#test{
-    margin: 0;
-    padding: 0;
-
-    display: grid;
-    place-items: center;
-
-    text-align: center;
 }
 
 #rs-table {
@@ -155,7 +133,7 @@ button {
     display: grid;
     justify-items: center;
     align-items: center;
-    grid-template-columns: 0.75fr 25px auto;
+    grid-template-columns: 1fr 25px 1fr;
     grid-template-rows: 1fr auto;
     grid-template-areas: 
     "img . frac"
@@ -174,6 +152,18 @@ button {
     "num . ."
     ". . ."
     ". . den";
+}
+
+.inv-num, .inv-den{
+    max-height: 2rem;
+    max-width: 2rem;
+
+    background: none;
+    border-width: 0.02rem;
+}
+
+input::placeholder {
+    opacity: 60%;
 }
 
 .inv-den {
