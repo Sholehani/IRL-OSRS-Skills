@@ -13,7 +13,7 @@ Table Functions:
 
 Settings: 
 * **+ / - :** Adds/deletes table's cells
-* **hide 0:** Hides the cell fraction's placeholders
+* **hide 0:** Hides cell fraction's placeholders
 * **hide border:** Hides cell's fraction input borders
 * **reset:** Deletes all images and points and sets table to default state
 
